@@ -1,128 +1,131 @@
 export const caseStudies = [
   {
-    main_image_src:
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356325/Screenshot_2025-08-28_at_10.14.32_AM_vndeou.png",
-    project_title: "Reimagining business insurance with a data-driven, AI-powered platform design.",
+    main_image_src: "/two.jpg",
+    project_title: "Full Commercial HVAC System Installation for Apex Office Complex",
     logo_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/665dcd0c7dc5304519a9a4e0_Standard%20Draft.png",
+      "madaga.png",
     description:
-      "We designed, built & deployed on Standard Draft, an AI-powered legal signing platform. It was a multi-year journey.",
+      "We installed a state-of-the-art HVAC system across the entire Apex Office Complex, improving airflow efficiency and energy savings.",
     features: [
-      "R&D-ed & built first-of-it's kind legal contract templating engine to draft & negotiate enterprise-ready NDAs in minutes via wizard-style interface.",
-      "Cut down contract creation time from ~31 days to hours. >10x faster. Several times cheaper.",
+      "Installed energy-efficient VRF system covering 50,000 sq ft.",
+      "Integrated smart thermostats for zone-specific climate control.",
+      "Reduced energy consumption by 25% within the first quarter.",
     ],
     case_study_link: "#",
-    name: "Standard Draft",
+    name: "Apex Office Complex",
     demo_images: [
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356325/Screenshot_2025-08-28_at_10.14.32_AM_vndeou.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356325/Screenshot_2025-08-28_at_10.14.32_AM_vndeou.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356325/Screenshot_2025-08-28_at_10.14.32_AM_vndeou.png",
+       "/14.jpg",
+      "/15.jpg",
+      "/9.jpg",
+      // "https://images.pexels.com/photos/159024/pexels-photo-159024.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/276024/pexels-photo-276024.jpeg?auto=compress&cs=tinysrgb&w=1200",
     ],
-    test_img:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667adecbe7684da501b70952_image%2014.jpg",
-    testimonial: `"Ionio didn't disappear after the MVP was built. They continued to work with us to fix bugs and make improvements based on user feedback."`,
-    founder_name: "Ryan Samii",
-    position: "Founder & CEO",
+    test_img: "/person.png",
+    testimonial: `"The HVAC upgrade was seamless and our staff are now enjoying consistent comfort throughout the building."`,
+    founder_name: "John Adams",
+    position: "Facility Manager",
   },
   {
-    main_image_src:
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356657/Screenshot_2025-08-28_at_10.20.39_AM_v5cnur.png",
-    project_title: "Enhancing Perlon AI’s user experience for sales success",
+    main_image_src: "/three.jpg",
+    project_title: "Industrial HVAC Maintenance and Ductwork Optimization",
     logo_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/6659ae5c3907ce45e187ce85_dex-logo.png",
-    description:
-      "Ionio designed, trained, built & deployed an AI-powered personalized slide deck creation & analytics SaaS platform from scratch in ~8 weeks.",
+        "madaga.png",   
+   description:
+      "Performed comprehensive maintenance and ductwork optimization for a large industrial facility to enhance air quality and system efficiency.",
     features: [
-      "Create slide decks in minutes rather than hours. Personalized decks convert more. Successful outcomes.",
-      "Dex scrapes Google, LinkedIn & company website for your prospect's info.",
-      "Drastically cut down repetitive labor for SDRs from 20+ hours/month down to just ~2h. 10x faster. 20x cheaper.",
+      "Cleaned and replaced 12,000 sq ft of ductwork.",
+      "Upgraded filtration systems for improved air quality.",
+      "Reduced operational downtime by 40% through predictive maintenance.",
     ],
     case_study_link: "#",
-    name: "Dex",
+    name: "Global Manufacturing Plant",
     demo_images: [
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356657/Screenshot_2025-08-28_at_10.20.39_AM_v5cnur.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356657/Screenshot_2025-08-28_at_10.20.39_AM_v5cnur.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356657/Screenshot_2025-08-28_at_10.20.39_AM_v5cnur.png",
+      "/13.jpg",
+      "/11.jpg",
+      "/12.jpg",
+      // "https://images.pexels.com/photos/4195320/pexels-photo-4195320.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/3836061/pexels-photo-3836061.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/4182044/pexels-photo-4182044.jpeg?auto=compress&cs=tinysrgb&w=1200",
     ],
-    test_img:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667adece3c44f7ae7233676d_video%2011.jpg",
-    testimonial: `"Even though we are from the US and working with a company overseas, they made the experience very personable."`,
-    founder_name: "Reid Chong",
-    position: "Founder & CEO",
+    test_img: "/person.png",
+    testimonial: `"The team was professional, thorough, and extremely knowledgeable in optimizing our complex HVAC setup."`,
+    founder_name: "Linda Thompson",
+    position: "Operations Director",
   },
   {
-    main_image_src:
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356701/Screenshot_2025-08-28_at_10.21.20_AM_qr8ko9.png",
-    project_title: "Refining Scout’s interface and UX for scalable AI automation",
-    logo_src: "https://veerview.ai/assets/images/image05.jpg?v=505d141a",
+    main_image_src: "one.jpg",
+    project_title: "Residential HVAC System Upgrade with Smart Controls",
+    logo_src: 
+    "madaga.png",
     description:
-      "Ionio designed, developed and deployed Veerview AI, a prospecting & data enrichment SaaS for outbound sales —  12 weeks, team of 3.",
+      "Upgraded a residential HVAC system to a modern, energy‑efficient solution with smart thermostat integration for precise home comfort.",
     features: [
-      "Scrape emails from our ~54million brand & employees database based on 50+ datapoints with <5 clicks.",
-      "Enrich data from 10+ sources with proprietary scraper for ecommerce & website data, SEO metrics & social media metrics through a single portal",
+      "Installed high‑efficiency air conditioning and heating units.",
+      "Integrated smart thermostats for room‑specific control via app.",
+      "Enhanced air circulation and reduced monthly energy bills by 30%.",
     ],
     case_study_link: "#",
-    name: "Veerview",
+    name: "Greenwood Residences",
     demo_images: [
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356701/Screenshot_2025-08-28_at_10.21.20_AM_qr8ko9.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356701/Screenshot_2025-08-28_at_10.21.20_AM_qr8ko9.png",
-      "https://res.cloudinary.com/dieth2xb3/image/upload/v1756356701/Screenshot_2025-08-28_at_10.21.20_AM_qr8ko9.png",
+      "/10.jpg",
+      "/11.jpg",
+      "/12.jpg",
+      // "https://images.pexels.com/photos/16848596/pexels-photo-16848596.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/4108415/pexels-photo-4108415.jpeg?auto=compress&cs=tinysrgb&w=1200"
     ],
-    test_img:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667adecbea18eeb8f0d91b57_video%204.jpg",
-    testimonial: `"Communication is free-flowing and Veerview can almost always get a hold of someone on Ionio’s team throughout the day."`,
-    founder_name: "TJ Gottfried",
-    position: "Founder",
+    test_img: "/person.png",
+    testimonial: `"Our home has never been more comfortable. The installation was quick and the team explained everything clearly."`,
+    founder_name: "Michael Brown",
+    position: "Homeowner",
   },
   {
-    main_image_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667a854a4fccb876bd2ac5b7_supplierHQ.png",
-    project_title: "A complete transformation of Acodei’s interface design and user experience",
+    main_image_src: "/four.jpg",
+    project_title: "Hospital HVAC System Retrofit for Enhanced Safety",
     logo_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/665da4b5d559ba95bc6af154_supplierhq.svg",
+     "madaga.png",
     description:
-      "Ionio designed, developed & launched the SaaS MVP from scratch in 8 weeks in late-2023. Scaled until it crossed several thousand paying users. Then, transferred it over to the in-house tech team.",
+      "Retrofitted the HVAC system at a busy hospital to meet modern air quality and safety standards, ensuring patient and staff safety.",
     features: [
-      "Built a robust production-grade system to support large influx of users during launch — implemented intelligent-caching for sub-2second load times on search & database lookups.",
-      "24/7 availability & responsive support during critical launch & beta period",
+      "Installed HEPA filtration units for critical zones.",
+      "Upgraded airflow and ventilation to meet hospital compliance.",
+      "Minimized system downtime during retrofit through phased installation.",
     ],
     case_study_link: "#",
-    name: "SuppierHQ",
+    name: "City Hospital",
     demo_images: [
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
+      // "https://images.pexels.com/photos/3845132/pexels-photo-3845132.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/3845124/pexels-photo-3845124.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/3845126/pexels-photo-3845126.jpeg?auto=compress&cs=tinysrgb&w=1200"
     ],
-    test_img:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667adecda06c8f453168901f_video%2012.jpg",
-    testimonial: `"Ionio was very professional and provided excellent support throughout the entire process."`,
-    founder_name: "Brad Milne",
-    position: "Co-Founder",
+    test_img: "/person.png",
+    testimonial: `"The retrofit was executed flawlessly. Air quality has greatly improved and our staff feels much safer."`,
+    founder_name: "Dr. Emily Carter",
+    position: "Hospital Administrator",
   },
   {
-    main_image_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/6672c97bbd3718b215565426_Wordout.png",
-    project_title: "Bridging the gap between cutting-edge technology and user accessibility",
+    main_image_src: "/three.jpg",
+    project_title: "Retail Chain HVAC Optimization for Energy Efficiency",
     logo_src:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667404a553e0149bc2d16e69_wordout.png",
+      "madaga.png",
     description:
-      "We designed, developed, deployed & scaled WordOut an AI-powered social media content creation, repurposement & scheduling platform. MVP in 6 weeks. First of it’s kind in 2022. ✨",
+      "Optimized HVAC systems across a retail chain to reduce energy costs and improve customer comfort.",
     features: [
-      "~20x faster than with manual effort. Convert videos, ebooks, docs into 100s of social media content pieces with a single click.",
-      "Automated 90% of the content creation task. Saved $7-15k/month in manual labour",
+      "Installed smart sensors to adjust temperatures based on foot traffic.",
+      "Upgraded units to high-efficiency models.",
+      "Achieved 20% reduction in energy costs across all locations.",
     ],
     case_study_link: "#",
-    name: "Wordout",
+    name: "Urban Retail Chain",
     demo_images: [
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/GpPxvDUWEAAILZW?format=jpg&name=4096x4096",
+      // "https://images.pexels.com/photos/3734920/pexels-photo-3734920.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/3734921/pexels-photo-3734921.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      // "https://images.pexels.com/photos/3734922/pexels-photo-3734922.jpeg?auto=compress&cs=tinysrgb&w=1200"
     ],
-    test_img:
-      "https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/667adece0c823fe11cb6aa89_video%2010.jpg",
-    testimonial: `"Ionio's team was understanding about this and did not get discouraged when new bugs were found."`,
-    founder_name: "Michael Guimarin",
-    position: "Founder",
+    test_img: "/person.png",
+    testimonial: `"Our stores are now cooler in summer and warmer in winter, all while saving on energy bills."`,
+    founder_name: "Karen Lee",
+    position: "Regional Manager",
   },
 ];
 

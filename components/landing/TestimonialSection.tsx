@@ -148,12 +148,12 @@ function Testimonial() {
           ))}
         </div>
 
-        <section
+        {/* <section
           className="mt-10 sm:mt-12 md:mt-14 lg:mt-16"
           aria-labelledby="stats-heading"
           role="region"
           ref={statsRef}
-        >
+         >
           <h3 id="stats-heading" className="sr-only">
             Impact metrics
           </h3>
@@ -196,7 +196,7 @@ function Testimonial() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </section>
     </>
   );

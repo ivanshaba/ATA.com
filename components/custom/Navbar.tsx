@@ -31,8 +31,23 @@ function Navbar() {
       description: "Learn more about our company",
     },
     {
+      name: "Services",
+      href: "/blog",
+      description: "Read our latest AI insights and research",
+    },
+    {
       name: "Blog",
       href: "/blog",
+      description: "Read our latest AI insights and research",
+    },
+    // {
+    //   name: "Why Us",
+    //   href: "/blog",
+    //   description: "Read our latest AI insights and research",
+    // },
+    {
+      name: "Contact",
+      href: "/contact",
       description: "Read our latest AI insights and research",
     }
   ];
@@ -193,26 +208,32 @@ function Navbar() {
             aria-label="Primary navigation"
           >
             {/* Logo */}
-            <div className="flex items-center">
-              <Link
-                href="/"
-                className="focus:ring-ring flex items-center gap-2 rounded-md transition-opacity hover:opacity-80 focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                aria-label="Ionio - Return to homepage"
-                aria-describedby="logo-description"
-              >
-                <img
-                  src="https://cdn.prod.website-files.com/62528d398a42424ab6390ee1/62528d398a42424d6e390f57_horizontal-logo-transperant.png"
-                  alt="Ionio Logo"
-                  className="h-8 w-auto"
-                  width="120"
-                  height="32"
-                  aria-hidden="true"
-                />
-                <span id="logo-description" className="sr-only">
-                  Ionio - Leading digital solutions provider
-                </span>
-              </Link>
-            </div>
+            {/* Logo */}
+<div className="flex items-center">
+  <Link
+    href="/" // <-- change this to "/" to go to home
+    className="focus:ring-ring flex items-center gap-2 rounded-md transition-opacity hover:opacity-80 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+    aria-label="ATA - Return to homepage"
+    aria-describedby="logo-description"
+  >
+    <img
+      src="/madaga.png"
+      alt="ATA Logo"
+      className="h-8 w-auto"
+      width="140"
+      height="120"
+      aria-hidden="true"
+    />
+    <span id="logo-description" className="sr-only">
+      ATA - Leading HVAC solutions in Uganda
+    </span>
+  </Link>
+</div>
+
+
+
+
+
 
             <ul
               className="hidden items-center space-x-6 lg:flex"
@@ -245,26 +266,7 @@ function Navbar() {
               })}
             </ul>
 
-            <div className="flex items-center gap-3">
-              {/* GitHub Icon */}
-              <Link
-                href="https://github.com/pinak3748"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus:ring-ring flex items-center justify-center rounded-md p-2 transition-colors hover:bg-accent"
-                aria-label="Visit our GitHub repository"
-              >
-                <Github className="h-5 w-5 text-primary" />
-              </Link>
-
-              <Button
-                size={"sm"}
-                className="text-sm"
-                aria-label="Contact us to start working together"
-              >
-                Work with us
-              </Button>
-            </div>
+            
 
             {/* Mobile Menu Button */}
             <div className="lg:hidden">

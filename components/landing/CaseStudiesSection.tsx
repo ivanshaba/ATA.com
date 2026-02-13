@@ -92,12 +92,12 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
           aria-describedby={`case-study-${index}-description`}
           type="button"
         >
-          View case study
+          View project details
           <span className="sr-only"> for {caseStudy.name}</span>
         </Button>
 
         <p id={`case-study-${index}-description`} className="sr-only">
-          Learn more about the {caseStudy.name} project and its implementation details
+          Learn more about the {caseStudy.name} HVAC project and its implementation details
         </p>
       </div>
 
@@ -105,7 +105,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy, index }) => {
         ref={imageRef}
         className="col-span-1 aspect-[4/3] lg:col-span-7"
         role="region"
-        aria-label={`${caseStudy.name} project screenshots`}
+        aria-label={`${caseStudy.name} project images`}
       >
         <ImageCarousel
           images={caseStudy.demo_images}
@@ -122,14 +122,10 @@ const CaseStudies: React.FC = () => {
   const headingRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Animate the main heading
     if (headingRef.current) {
       gsap.fromTo(
         headingRef.current,
-        {
-          y: 30,
-          opacity: 0,
-        },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -140,57 +136,54 @@ const CaseStudies: React.FC = () => {
             start: "top 90%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
-            markers: false, // Set to false for production
+            markers: false,
           },
         }
       );
     }
 
-    // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
-    <>
-      <section
-        ref={sectionRef}
-        className="mx-auto max-w-7xl px-5 py-16 md:py-24"
-        aria-labelledby="case-studies-heading"
-        role="region"
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-5 py-16 md:py-24"
+      aria-labelledby="case-studies-heading"
+      role="region"
+    >
+      {/* Header */}
+      <SectionHeading
+        ref={headingRef}
+        badge="Solutions That Keep You Comfortable"
+        heading="Our HVAC Projects"
+        description="Take a look at our recent HVAC installations, maintenance, and system upgrades. We deliver efficient, reliable, and tailored solutions for homes and businesses."
+        size="md"
+        align="center"
+        as="h2"
+        id="case-studies-heading"
+        className="mb-8 md:mb-14"
+      />
+
+      {/* Case Studies */}
+      <div className="space-y-8 md:space-y-24" role="main" aria-label="HVAC projects collection">
+        {caseStudies.slice(0, 3).map((caseStudy, index) => (
+          <div key={`${caseStudy.name}-${index}`}>
+            <CaseStudyCard caseStudy={caseStudy} index={index} />
+          </div>
+        ))}
+      </div>
+
+      {/* Skip link for keyboard users */}
+      <a
+        href="#main-navigation"
+        className="sr-only z-50 rounded-md bg-blue-600 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
       >
-        {/* Header */}
-        <SectionHeading
-          ref={headingRef}
-          badge="Designs That Drive Growth"
-          heading="Recent case studies"
-          description="Explore our latest projects featuring AI-powered platforms, business solutions, and innovative designs that have driven measurable growth for our clients."
-          size="md"
-          align="center"
-          as="h2"
-          id="case-studies-heading"
-          className="mb-8 md:mb-14"
-        />
-
-        {/* Case Studies */}
-        <div className="space-y-8 md:space-y-24" role="main" aria-label="Case studies collection">
-          {caseStudies.slice(0, 3).map((caseStudy, index) => (
-            <div key={`${caseStudy.name}-${index}`}>
-              <CaseStudyCard caseStudy={caseStudy} index={index} />
-            </div>
-          ))}
-        </div>
-
-        {/* Skip link for keyboard users */}
-        <a
-          href="#main-navigation"
-          className="sr-only z-50 rounded-md bg-blue-600 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
-        >
-          Skip to main navigation
-        </a>
-      </section>
-    </>
+        Skip to main navigation
+      </a>
+    </section>
   );
 };
 

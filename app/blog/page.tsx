@@ -13,95 +13,51 @@ import { useRef, useState } from "react";
 const blogPosts = [
   {
     id: 1,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
+    title: "Optimizing HVAC Systems for Energy Efficiency",
     excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "AI Strategy",
-    slug: "optimize-lora-qlora",
+      "Discover strategies to enhance HVAC system performance while reducing energy consumption in residential and commercial spaces.",
+    image: "/22.jpg",
+    date: "Feb 10, 2026",
+    tag: "HVAC Strategy",
+    slug: "hvac-energy-efficiency",
     isTopPick: true,
   },
   {
     id: 2,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
+    title: "Smart Thermostat Integration for Modern Buildings",
     excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "SaaS",
-    slug: "optimize-lora-qlora",
+      "Learn how smart thermostats improve comfort and efficiency in HVAC systems while enabling remote monitoring.",
+    image: "/23.jpg",
+    date: "Feb 12, 2026",
+    tag: "Smart HVAC",
+    slug: "smart-thermostat-integration",
     isTopPick: true,
   },
   {
     id: 3,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
+    title: "Industrial HVAC Maintenance Best Practices",
     excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "AI",
-    slug: "optimize-lora-qlora",
+      "A guide to maintaining large-scale HVAC systems to ensure reliability, safety, and compliance with regulations.",
+    image: "/16.jpg",
+    date: "Feb 14, 2026",
+    tag: "Maintenance",
+    slug: "industrial-hvac-maintenance",
     isTopPick: true,
   },
   {
     id: 4,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
+    title: "Residential HVAC Upgrades with Smart Controls",
     excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "Mobile",
-    slug: "optimize-lora-qlora",
-    isTopPick: false,
-  },
-  {
-    id: 5,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
-    excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "Optimation",
-    slug: "optimize-lora-qlora",
-    isTopPick: false,
-  },
-  {
-    id: 6,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
-    excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "AI Strategy",
-    slug: "optimize-lora-qlora",
-    isTopPick: false,
-  },
-  {
-    id: 7,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
-    excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "AI Strategy",
-    slug: "optimize-lora-qlora",
-    isTopPick: false,
-  },
-  {
-    id: 8,
-    title: "Enhancing Model Performance: The Impact of Fine-tuning with LoRA & QLoRA",
-    excerpt:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    date: "Aug 16, 2025",
-    tag: "AI Strategy",
-    slug: "optimize-lora-qlora",
+      "How smart HVAC solutions can improve comfort and reduce energy bills for homeowners.",
+    image: "/18.jpg",
+    date: "Feb 16, 2026",
+    tag: "Residential",
+    slug: "residential-hvac-upgrades",
     isTopPick: false,
   },
 ];
 
-const blogTags = ["All", "AI Strategy", "ML Engineering", "LLM Development"];
+const blogTags = ["All", "HVAC Strategy", "Smart HVAC", "Maintenance", "Residential"];
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -176,22 +132,22 @@ function BlogPage() {
             aria-label="Blog introduction"
           >
             <div className="bg-tag-bg w-fit rounded-3xl px-6 py-1 mx-auto">
-              <p className="text-tag align-middle text-sm ">
+              <p className="text-tag align-middle text-sm">
                 <span className="mt-1.5 mr-2 inline-block self-center" aria-hidden="true">
-                  📝
+                  ❄️
                 </span>
-                AI Insights & Research
+                HVAC Insights & Industry Updates
               </p>
             </div>
 
             <h1 className="blog-heading text-h1 text-text-heading !text-center font-semibold md:mx-auto md:w-2/3">
-              Latest AI Research & Insights
+              Latest HVAC Installation & Maintenance Insights
             </h1>
 
             <p className="text-caption text-label md:mx-auto md:w-2/3">
-              Stay updated with the latest trends, research, and insights in artificial
-              intelligence, machine learning, and emerging technologies that are shaping the future
-              of business.
+              Stay updated with expert insights on HVAC installation, commercial and
+              industrial cooling systems, ventilation solutions, and maintenance best
+              practices across Kampala and Uganda.
             </p>
           </section>
 
@@ -238,7 +194,7 @@ function BlogPage() {
                     </h3>
 
                     <div className="flex items-center gap-3 text-sm text-label">
-                      <time dateTime="2025-08-16" className="font-medium">
+                      <time dateTime="2026-02-10" className="font-medium">
                         {post.date}
                       </time>
                       <Badge variant="secondary" className="text-xs">
@@ -335,7 +291,7 @@ function BlogPage() {
                     </h3>
 
                     <div className="flex items-center gap-3 text-sm text-label">
-                      <time dateTime="2025-08-16" className="font-medium">
+                      <time dateTime="2026-02-10" className="font-medium">
                         {post.date}
                       </time>
                       <Badge variant="secondary" className="text-xs">

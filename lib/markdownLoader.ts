@@ -31,79 +31,81 @@ export interface BlogPostContent {
 
 const blogPostMetadata: Record<string, BlogPostMetadata> = {
   "future-ai-business-comprehensive-guide": {
-    title: "The Future of AI in Business: A Comprehensive Guide",
+    title: "Choosing the Right HVAC System for Commercial Buildings in Kampala",
     subtitle:
-      "Explore how artificial intelligence is transforming modern business operations and what it means for your company's future.",
-    readTime: "12 min read",
-    publishDate: "Aug 16, 2025",
+      "A practical guide to selecting efficient and reliable HVAC systems for offices, malls, and commercial buildings in Uganda.",
+    readTime: "8 min read",
+    publishDate: "Feb 12, 2026",
     author: {
-      name: "Sarah Chen",
-      role: "AI Strategy Lead",
+      name: "Engineering Team",
+      role: "HVAC Systems Specialist",
       avatar: "/api/placeholder/48/48",
-      bio: "Sarah is a leading expert in AI strategy with over 10 years of experience helping businesses transform through artificial intelligence. She specializes in AI implementation and digital transformation.",
+      bio: "Our engineering team specializes in commercial and industrial HVAC system design, installation, and maintenance across Uganda.",
     },
     keyTakeaways: [
-      "AI adoption is accelerating across industries, with 85% of companies planning to increase AI investments",
-      "Successful AI implementation requires organizational readiness, not just technology",
-      "The future of AI lies in human-AI collaboration rather than replacement",
-      "Data quality and governance are critical foundations for AI success",
+      "Proper HVAC sizing prevents energy waste and system failure",
+      "Energy-efficient systems reduce long-term electricity costs",
+      "Power protection is critical in Uganda’s grid conditions",
+      "Regular maintenance extends HVAC system lifespan",
     ],
     breadcrumbs: [
       { label: "Resources", href: "/blog" },
-      { label: "AI Strategy", href: "/blog?tag=ai-strategy" },
+      { label: "Commercial HVAC", href: "/blog?tag=commercial-hvac" },
     ],
     image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    tag: "AI Strategy",
+    tag: "Commercial HVAC",
   },
+
   "building-scalable-machine-learning-pipelines": {
-    title: "Building Scalable Machine Learning Pipelines",
+    title: "Preventive HVAC Maintenance for Industrial Facilities in Uganda",
     subtitle:
-      "Learn the best practices for creating robust and scalable machine learning pipelines that can handle production workloads.",
-    readTime: "15 min read",
-    publishDate: "Aug 16, 2025",
+      "How regular HVAC maintenance reduces downtime and improves system efficiency in factories and large facilities.",
+    readTime: "7 min read",
+    publishDate: "Feb 12, 2026",
     author: {
-      name: "Michael Rodriguez",
-      role: "ML Engineering Director",
+      name: "Service Department",
+      role: "Industrial HVAC Maintenance Team",
       avatar: "/api/placeholder/48/48",
-      bio: "Michael is a seasoned ML engineer with expertise in building production-ready machine learning systems. He has led ML infrastructure teams at several tech companies and is passionate about scalable AI solutions.",
+      bio: "Our maintenance division supports factories, warehouses, and production plants with professional HVAC servicing and duct optimization.",
     },
     keyTakeaways: [
-      "Modularity and observability are key principles for scalable ML pipelines",
-      "Feature stores centralize feature management and improve team collaboration",
-      "Model monitoring is essential for maintaining performance in production",
-      "Containerization and orchestration enable reliable model deployment",
+      "Preventive maintenance reduces emergency breakdowns",
+      "Duct cleaning improves airflow and air quality",
+      "System inspections protect compressors and electrical components",
+      "Maintenance contracts lower long-term operational costs",
     ],
     breadcrumbs: [
       { label: "Resources", href: "/blog" },
-      { label: "ML Engineering", href: "/blog?tag=ml-engineering" },
+      { label: "Industrial HVAC", href: "/blog?tag=industrial-hvac" },
     ],
     image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    tag: "ML Engineering",
+    tag: "Industrial HVAC",
   },
+
   "custom-llm-development-concept-deployment": {
-    title: "Custom LLM Development: From Concept to Deployment",
+    title: "Upgrading Residential HVAC Systems in Kampala Homes",
     subtitle:
-      "A deep dive into developing custom large language models tailored to your specific business needs and use cases.",
-    readTime: "18 min read",
-    publishDate: "Aug 16, 2025",
+      "Why modern, energy-efficient air conditioning systems are essential for comfort and cost savings in Kampala residences.",
+    readTime: "6 min read",
+    publishDate: "Feb 12, 2026",
     author: {
-      name: "Dr. Elena Vasquez",
-      role: "Head of AI Research",
+      name: "Residential Projects Team",
+      role: "Home Comfort Specialists",
       avatar: "/api/placeholder/48/48",
-      bio: "Dr. Vasquez is a leading researcher in natural language processing with over 15 years of experience in developing custom language models. She has published extensively on transformer architectures and model optimization.",
+      bio: "Our residential team focuses on home HVAC upgrades, smart thermostat integration, and energy-efficient installations.",
     },
     keyTakeaways: [
-      "Custom LLMs provide domain-specific expertise that general models lack",
-      "Data quality and curation are critical for successful custom model development",
-      "Deployment considerations include infrastructure, optimization, and monitoring",
-      "Iterative development and continuous evaluation ensure long-term success",
+      "Modern inverter systems reduce power consumption",
+      "Smart thermostats improve comfort control",
+      "Proper installation prevents uneven cooling",
+      "Upgrading old systems lowers monthly energy bills",
     ],
     breadcrumbs: [
       { label: "Resources", href: "/blog" },
-      { label: "LLM Development", href: "/blog?tag=llm-development" },
+      { label: "Residential HVAC", href: "/blog?tag=residential-hvac" },
     ],
     image: "https://res.cloudinary.com/dieth2xb3/image/upload/v1755804235/aaaimage_zbypst.png",
-    tag: "LLM Development",
+    tag: "Residential HVAC",
   },
 };
 
@@ -133,21 +135,28 @@ export const parseMarkdownHeadings = (markdown: string) => {
 };
 
 export const markdownToHTML = (markdown: string) => {
+  const createId = (text: string) =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
   const html = markdown
-    .replace(
-      /^### (.*$)/gim,
-      '<h3 id="$1" class="scroll-mt-24 text-xl font-semibold mb-4 mt-8 text-foreground">$1</h3>'
-    )
-    .replace(
-      /^## (.*$)/gim,
-      '<h2 id="$1" class="scroll-mt-24 text-2xl font-semibold mb-6 mt-10 text-foreground">$1</h2>'
-    )
-    .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold mb-8 text-foreground">$1</h1>')
+    .replace(/^### (.*$)/gim, (_, text) => {
+      const id = createId(text);
+      return `<h3 id="${id}" class="scroll-mt-24 text-xl font-semibold mb-4 mt-8 text-foreground">${text}</h3>`;
+    })
+    .replace(/^## (.*$)/gim, (_, text) => {
+      const id = createId(text);
+      return `<h2 id="${id}" class="scroll-mt-24 text-2xl font-semibold mb-6 mt-10 text-foreground">${text}</h2>`;
+    })
+    .replace(/^# (.*$)/gim, (_, text) => {
+      const id = createId(text);
+      return `<h1 id="${id}" class="text-3xl font-bold mb-8 text-foreground">${text}</h1>`;
+    })
     // Lists
-    .replace(/^\* (.*$)/gim, '<li class="mb-2 text-muted-foreground">$1</li>')
+    .replace(/^\- (.*$)/gim, '<li class="mb-2 text-muted-foreground">$1</li>')
     .replace(/(<li.*<\/li>)/g, '<ul class="list-disc list-inside mb-4 space-y-1">$1</ul>')
-    // Numbered lists
-    .replace(/^\d+\. (.*$)/gim, '<li class="mb-2 text-muted-foreground">$1</li>')
     // Paragraphs
     .replace(/^([^\n#*\-].*)$/gm, '<p class="mb-4 leading-7 text-muted-foreground">$1</p>')
     // Bold
@@ -164,159 +173,105 @@ export const markdownToHTML = (markdown: string) => {
   return html;
 };
 
+
 export const loadBlogPost = async (slug: string): Promise<BlogPostContent> => {
   try {
     let markdownContent = "";
 
     if (slug === "future-ai-business-comprehensive-guide") {
-      markdownContent = `# The Future of AI in Business: A Comprehensive Guide
+  markdownContent = `# Choosing the Right HVAC System for Commercial Buildings in Kampala
 
-Artificial Intelligence is no longer a futuristic concept—it's a present reality that's transforming how businesses operate, compete, and grow. From small startups to enterprise giants, organizations are leveraging AI to streamline operations, enhance customer experiences, and drive innovation.
+Commercial buildings in Kampala require reliable and energy-efficient HVAC systems to maintain comfort, protect equipment, and reduce electricity costs.
 
-## The Current State of AI in Business
+## Why HVAC Planning Matters
 
-### AI Adoption Trends
+Uganda’s warm climate means cooling systems often operate throughout the year. Without proper planning, businesses may face:
 
-The business world has witnessed unprecedented AI adoption in recent years. Companies across industries are implementing AI solutions to:
+- Rising electricity bills
+- Frequent system breakdowns
+- Poor indoor air quality
+- Uneven cooling across offices
 
-- **Automate repetitive tasks** and improve operational efficiency
-- **Enhance decision-making** through data-driven insights
-- **Personalize customer experiences** at scale
-- **Optimize supply chains** and reduce costs
-- **Accelerate innovation** in product development
+## Key Considerations Before Installation
 
-### Key AI Technologies Driving Change
+### 1. Building Size and Load Requirements
+Proper system sizing ensures efficient performance and prevents overworking compressors.
 
-Several AI technologies are at the forefront of business transformation:
+### 2. Energy Efficiency
+Inverter systems and VRF technology significantly reduce long-term operating costs.
 
-1. **Machine Learning (ML)** - Enables systems to learn and improve from experience
-2. **Natural Language Processing (NLP)** - Powers chatbots, sentiment analysis, and content generation
-3. **Computer Vision** - Automates visual inspection and image recognition tasks
-4. **Predictive Analytics** - Forecasts trends and behaviors to inform strategic decisions
-5. **Robotic Process Automation (RPA)** - Automates rule-based business processes
+### 3. Power Protection
+Voltage stabilizers and surge protection are essential to protect HVAC equipment.
 
-## Strategic Implementation of AI
-
-### Building an AI-Ready Organization
-
-Successfully implementing AI requires more than just technology—it demands organizational readiness:
-
-#### 1. Data Infrastructure
-- Establish robust data collection and storage systems
-- Ensure data quality and accessibility
-- Implement proper data governance frameworks
-
-#### 2. Talent Development
-- Hire AI specialists and data scientists
-- Upskill existing employees
-- Foster a culture of continuous learning
-
-#### 3. Change Management
-- Communicate AI benefits clearly to stakeholders
-- Address concerns about job displacement
-- Provide adequate training and support
+### 4. Maintenance Planning
+Regular servicing prevents downtime and extends equipment lifespan.
 
 ## Conclusion
 
-The future of AI in business is not just about technology—it's about transformation. Organizations that successfully integrate AI into their operations will gain significant competitive advantages, from improved efficiency and customer satisfaction to new revenue streams and market opportunities.`;
-    } else if (slug === "building-scalable-machine-learning-pipelines") {
-      markdownContent = `# Building Scalable Machine Learning Pipelines
+Investing in the right HVAC system ensures long-term efficiency, improved air quality, and reliable performance for commercial buildings in Kampala.`;
 
-In today's data-driven world, the ability to build and deploy machine learning models at scale is crucial for business success. However, moving from experimental Jupyter notebooks to production-ready ML pipelines presents unique challenges that require careful planning and robust architecture.
+ }
+   else if (slug === "building-scalable-machine-learning-pipelines") {
+  markdownContent = `# Preventive HVAC Maintenance for Industrial Facilities in Uganda
 
-## Understanding ML Pipeline Architecture
+Industrial facilities rely on HVAC systems for temperature control, air quality, and equipment protection.
 
-### Core Components of ML Pipelines
+## Why Preventive Maintenance Is Important
 
-A well-designed ML pipeline consists of several interconnected components:
+Without routine servicing, industrial HVAC systems may experience:
 
-1. **Data Ingestion** - Collecting data from various sources
-2. **Data Validation** - Ensuring data quality and consistency
-3. **Feature Engineering** - Creating meaningful features from raw data
-4. **Model Training** - Training ML models with validated data
-5. **Model Validation** - Testing model performance and accuracy
-6. **Model Deployment** - Serving models in production environments
-7. **Monitoring** - Tracking model performance and data drift
-8. **Retraining** - Updating models with new data
+- Reduced airflow
+- Compressor failure
+- Increased energy consumption
+- Unplanned downtime
 
-## Data Pipeline Architecture
+## Key Maintenance Activities
 
-### Data Ingestion Strategies
+### Duct Cleaning
+Removes dust buildup and improves airflow efficiency.
 
-Effective data ingestion is the foundation of any ML pipeline:
+### Filter Replacement
+Ensures clean indoor air and protects internal components.
 
-#### Batch Processing
-- **Scheduled data loads** from databases and APIs
-- **File-based ingestion** from cloud storage
-- **Data warehouse integration** for structured data
-- **ETL processes** for data transformation
+### Electrical Inspection
+Prevents damage caused by unstable power supply.
 
-#### Real-time Processing
-- **Stream processing** with Apache Kafka or similar
-- **Event-driven architecture** for immediate data updates
-- **API-based ingestion** for real-time data feeds
-- **Message queues** for asynchronous processing
+### Performance Testing
+Identifies inefficiencies before they become costly problems.
 
 ## Conclusion
 
-Building scalable machine learning pipelines is a complex but rewarding endeavor. Success requires careful planning, robust architecture, and continuous monitoring. By following best practices and leveraging the right tools, organizations can create ML pipelines that not only scale with their data and model complexity but also deliver reliable, high-performance results in production.`;
+Preventive HVAC maintenance reduces downtime, improves system performance, and protects long-term investments in industrial facilities across Uganda.`;
+
     } else if (slug === "custom-llm-development-concept-deployment") {
-      markdownContent = `# Custom LLM Development: From Concept to Deployment
+  markdownContent = `# Upgrading Residential HVAC Systems in Kampala Homes
 
-Large Language Models (LLMs) have revolutionized the AI landscape, but off-the-shelf solutions often fall short of meeting specific business requirements. Custom LLM development offers the opportunity to create models tailored to your unique use cases, data, and performance needs.
+Homeowners in Kampala are increasingly upgrading to modern HVAC systems to improve comfort and reduce electricity costs.
 
-## Understanding Custom LLM Development
+## Signs You Need an Upgrade
 
-### What Makes an LLM "Custom"?
+- High monthly electricity bills
+- Uneven cooling between rooms
+- Frequent breakdowns
+- System older than 8–10 years
 
-A custom LLM is specifically designed and trained for particular business needs, incorporating:
+## Benefits of Modern HVAC Systems
 
-- **Domain-specific knowledge** from your industry or organization
-- **Custom vocabulary** and terminology relevant to your use case
-- **Specialized capabilities** not available in general-purpose models
-- **Optimized performance** for your specific hardware and deployment constraints
-- **Compliance requirements** for regulated industries
+### Energy Efficiency
+Inverter air conditioners consume less power while maintaining consistent temperature.
 
-### When to Consider Custom LLM Development
+### Smart Controls
+Smart thermostats allow remote temperature adjustment and scheduling.
 
-Custom LLM development is ideal when:
-
-- **General models lack domain expertise** in your specific field
-- **Data privacy requirements** prevent using external APIs
-- **Performance optimization** is critical for your use case
-- **Cost considerations** make on-premises deployment more economical
-- **Regulatory compliance** requires full control over model behavior
-
-## The Custom LLM Development Process
-
-### 1. Requirements Analysis
-
-#### Define Your Objectives
-- **Use case identification** - What specific problems will the LLM solve?
-- **Performance requirements** - What accuracy, speed, and resource constraints do you have?
-- **Data requirements** - What type and volume of data do you need?
-- **Deployment constraints** - Where and how will the model be deployed?
-
-### 2. Data Preparation and Curation
-
-#### Data Collection
-- **Internal data sources** - Company documents, customer interactions, product information
-- **External data** - Public datasets, research papers, industry reports
-- **Synthetic data** - Generated examples to augment training data
-- **Data partnerships** - Collaborations with other organizations
-
-### 3. Model Architecture Design
-
-#### Base Model Selection
-- **Pre-trained models** - Start with existing architectures (GPT, BERT, T5)
-- **Model size** - Choose appropriate scale for your requirements
-- **Architecture modifications** - Adapt for specific use cases
-- **Multi-modal capabilities** - Add vision, audio, or other modalities
+### Improved Air Quality
+Modern systems include advanced filtration for healthier indoor environments.
 
 ## Conclusion
 
-Custom LLM development represents a significant opportunity for organizations to create AI solutions that are perfectly tailored to their specific needs. While the process is complex and resource-intensive, the benefits of having a model that understands your domain, respects your data privacy requirements, and delivers optimal performance for your use case can be substantial.`;
-    } else {
+Upgrading your residential HVAC system improves comfort, reduces operating costs, and increases the overall efficiency of your home.`;
+}
+
+     else {
       // Default content for unknown slugs
       markdownContent = `# Blog Post Not Found
 

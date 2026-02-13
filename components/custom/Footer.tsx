@@ -15,9 +15,9 @@ function Footer() {
   ];
 
   const socialLinks = [
-    { name: "X", href: "https://x.com/Pinak72813632" },
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/pinakfaldu/" },
-    { name: "Github", href: "https://github.com/pinak3748" },
+    { name: "X", href: "#" },
+    { name: "LinkedIn", href: "#" },
+    // { name: "Github", href: "https://github.com/pinak3748" },
   ];
 
   return (
@@ -30,7 +30,7 @@ function Footer() {
         <img
           ref={imageRef}
           className="h-[36vh] w-full object-cover sm:h-[48vh] md:h-[64vh] lg:h-[70vh]"
-          src="https://pbs.twimg.com/media/GxtkGthWsAAPR6-?format=jpg&name=4096x4096"
+          src="/23.jpg"
           alt="Books landscape background"
         />
         <h5
@@ -38,7 +38,7 @@ function Footer() {
           className="pointer-events-none absolute -bottom-10 z-10 w-full select-none sm:-bottom-16 md:-bottom-24 lg:-bottom-32"
         >
           <Marquee className="[--duration:5s]">
-            {["I", "O", "N", "I", "O"].map((char, idx) => (
+            {["A", "T", "A", "T", "A"].map((char, idx) => (
               <span
                 key={`ionio-outline-${idx}`}
                 className={`text-primary-foreground/80 footer-slang font-extrabold uppercase`}
@@ -68,11 +68,11 @@ function Footer() {
                   <p className="text-2xl font-bold" itemProp="name">
                     Ionio LLC
                   </p>
-                  <p className="text-sm">Copyrights © All Rights Reserved by Ionio.io</p>
+                  <p className="text-sm">Copyrights © All Rights Reserved by ATA</p>
                   <p className="text-sm">
                     <span className="sr-only">Phone:</span>
                     <a href="tel:+19103150746" itemProp="telephone" className="hover:underline">
-                      +1-910-315-0746
+                      +256 753 283 665
                     </a>
                   </p>
                   <p
@@ -81,12 +81,12 @@ function Footer() {
                     itemScope
                     itemType="https://schema.org/PostalAddress"
                   >
-                    <span itemProp="streetAddress">2055 Limestone Rd STE 200C IN Wilmington</span>
+                    <span itemProp="streetAddress">Industrial Area 8th street</span>
                   </p>
                   <p className="text-sm">
-                    <span itemProp="addressLocality">Wilmington</span>,{" "}
-                    <span itemProp="addressRegion">DE</span>{" "}
-                    <span itemProp="postalCode">19808</span>
+                    <span itemProp="addressLocality">Kampala</span>,{" "}
+                    <span itemProp="addressRegion">Uganda</span>{" "}
+                    {/* <span itemProp="postalCode">19808</span> */}
                   </p>
                 </div>
 

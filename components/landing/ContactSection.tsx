@@ -274,7 +274,7 @@ function ContactUs() {
             <div className="bg-primary absolute inset-0 h-full w-full rounded-2xl"></div>
             <div
               style={{
-                backgroundImage: `url(https://pbs.twimg.com/media/GqMIQdAXgAA_C4K?format=jpg&name=4096x4096)`,
+                backgroundImage: "/10.jpg",
               }}
               className="bg-background relative flex h-64 w-full flex-col items-center justify-center overflow-hidden rounded-2xl border bg-cover opacity-85 sm:h-80 lg:h-full"
             >
