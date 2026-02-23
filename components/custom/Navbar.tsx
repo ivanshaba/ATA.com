@@ -33,12 +33,12 @@ function Navbar() {
     {
       name: "Services",
       href: "/blog",
-      description: "Read our latest AI insights and research",
+      description: "HVAC",
     },
     {
       name: "Blog",
       href: "/blog",
-      description: "Read our latest AI insights and research",
+      description: "HVAC",
     },
     // {
     //   name: "Why Us",
@@ -48,7 +48,7 @@ function Navbar() {
     {
       name: "Contact",
       href: "/contact",
-      description: "Read our latest AI insights and research",
+      description: "HVAC",
     }
   ];
 
@@ -340,7 +340,7 @@ function Navbar() {
                   <div className="border-t pt-4 space-y-3">
                     {/* GitHub Link */}
                     <Link
-                      href="https://github.com/ionio"
+                      href="https://github.com/ATA"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none"
