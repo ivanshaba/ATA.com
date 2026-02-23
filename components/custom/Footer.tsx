@@ -40,7 +40,7 @@ function Footer() {
           <Marquee className="[--duration:5s]">
             {["A", "T", "A", "T", "A"].map((char, idx) => (
               <span
-                key={`ionio-outline-${idx}`}
+                key={`ATA-outline-${idx}`}
                 className={`text-primary-foreground/80 footer-slang font-extrabold uppercase`}
               >
                 {char}
@@ -66,7 +66,7 @@ function Footer() {
                   itemType="https://schema.org/Organization"
                 >
                   <p className="text-2xl font-bold" itemProp="name">
-                    Ionio LLC
+                    ATA LLC
                   </p>
                   <p className="text-sm">Copyrights © All Rights Reserved by ATA</p>
                   <p className="text-sm">

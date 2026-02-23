@@ -294,10 +294,10 @@ The requested blog post could not be found. Please check the URL and try again.
         day: "numeric",
       }),
       author: {
-        name: "Ionio Team",
+        name: "ATA Team",
         role: "Content Team",
         avatar: "/api/placeholder/48/48",
-        bio: "The Ionio team creates content to help businesses understand and implement AI solutions.",
+        bio: "The ATA team creates content to help businesses understand and implement AI solutions.",
       },
       keyTakeaways: ["The requested blog post could not be found"],
       breadcrumbs: [
