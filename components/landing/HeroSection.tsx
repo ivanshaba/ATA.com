@@ -174,8 +174,7 @@ function HomePage() {
             />
 
             <h1 className="loader-title text-3xl font-semibold tracking-wide opacity-0">
-              Madaga Engineering
-            </h1>
+             experience, reliability, guarantees            </h1>
           </div>
         </div>
       )}
@@ -211,7 +210,7 @@ function HomePage() {
             <SectionHeading
               badge="Industrial Air Conditioning & Raw Material Supply"
               badgeClassName="bg-white/10 text-white border border-purple-400/40 backdrop-blur-sm"
-              heading="We deliver robust cooling systems for factories and large buildings"
+              heading="Reliable Industrial & Commercial HVAC Solutions in Uganda — Installation, Maintenance & Energy-Efficient Systems."
               icon={Sparkles}
               size="lg"
               align="center"

@@ -126,7 +126,7 @@ function Testimonial() {
           ref={headingRef}
           badge="Testimonials"
           heading="Meet our happy clients"
-          description="Read what our clients say about working with Ionio."
+          description="Read what our clients say about working with ATA."
           size="md"
           align="center"
           as="h2"
