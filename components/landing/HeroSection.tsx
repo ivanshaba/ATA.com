@@ -224,7 +224,7 @@ function HomePage() {
             <SectionHeading
               badge="Industrial Air Conditioning & Raw Material Supply"
               badgeClassName="bg-white/10 text-white border border-purple-400/40 backdrop-blur-sm"
-              heading="Reliable Industrial & Commercial HVAC Solutions in Uganda. Installation, Maintenance & Energy Efficient Systems."
+              heading="Reliable Industrial & Commercial HVAC Solutions in Uganda: Installation, Maintenance & Supply of HVAC Equipment."
               icon={Sparkles}
               size="lg"
               align="center"

@@ -91,6 +91,16 @@ const servicesData = [
     slug: "energy-efficiency-audits",
     isFeatured: false,
   },
+  {
+    id: 9,
+    title: "HVAC Equipment Supply",
+    description:
+      "Wide range of genuine HVAC equipment, including compressors, coils, thermostats, and accessories for residential, commercial, and industrial applications.",
+    icon: "📦",
+    category: "Supply",
+    slug: "hvac-equipment-supply",
+    isFeatured: false,
+  },
 ];
 
 const serviceCategories = [
@@ -189,18 +199,16 @@ function ServicesPage() {
                 <span className="mt-1.5 mr-2 inline-block self-center" aria-hidden="true">
                   🔧
                 </span>
-                Professional HVAC Services in Kampala & Uganda
+                Professional HVAC Services & Equipment Supply in Kampala & Uganda
               </p>
             </div>
 
             <h1 className="services-heading text-h1 text-text-heading !text-center font-semibold md:mx-auto md:w-2/3">
-              Comprehensive HVAC Solutions for Every Need
+              Comprehensive HVAC Solutions & Equipment Supply for Every Need
             </h1>
 
             <p className="text-caption text-label md:mx-auto md:w-2/3">
-              From installation and maintenance to emergency repairs and energy audits, our expert
-              team delivers reliable, efficient HVAC services tailored to residential, commercial,
-              and industrial clients.
+              From installation and maintenance to emergency repairs, energy audits, and supply of high-quality HVAC equipment, our expert team delivers reliable, efficient services tailored to residential, commercial, and industrial clients.
             </p>
           </section>
 
@@ -342,7 +350,7 @@ function ServicesPage() {
             </h2>
             <p className="text-label text-lg mb-8 max-w-2xl mx-auto">
               Contact us today for a free consultation and quote. Our team is ready to help you achieve
-              comfort and efficiency.
+              comfort and efficiency with our full range of services and equipment supply.
             </p>
             <Button size="lg" asChild>
               <Link href="/contact">Get a Free Quote</Link>
