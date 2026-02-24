@@ -27,12 +27,24 @@ function HomePage() {
   const slideshowRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
 
-  const [isLoading, setIsLoading] = useState(true);
+  // Initialize loading state based on whether loader has been shown in this session
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !sessionStorage.getItem("loaderShown");
+    }
+    return true;
+  });
 
   /* =========================
      LOGO LOADER ANIMATION
   ========================== */
   useEffect(() => {
+    // If loader already shown, do nothing
+    if (sessionStorage.getItem("loaderShown")) {
+      setIsLoading(false);
+      return;
+    }
+
     if (!loaderRef.current) return;
 
     /* 🔥 GLOW PULSE ANIMATION */
@@ -53,7 +65,11 @@ function HomePage() {
           y: "-100%",
           duration: 1.2,
           ease: "power4.inOut",
-          onComplete: () => setIsLoading(false),
+          onComplete: () => {
+            // Mark loader as shown and hide it
+            sessionStorage.setItem("loaderShown", "true");
+            setIsLoading(false);
+          },
         });
       },
     });
@@ -97,65 +113,62 @@ function HomePage() {
      MAIN PAGE ANIMATIONS
   ========================== */
   useGSAP(
-  () => {
-    if (isLoading) return; // WAIT until loader is gone
+    () => {
+      if (isLoading) return; // WAIT until loader is gone
 
-    const headingElement = heroRef?.current?.querySelector("h1");
+      const headingElement = heroRef?.current?.querySelector("h1");
 
-    if (headingElement) {
-      SplitText.create(headingElement, {
-        type: "lines, words",
-        mask: "lines",
-        autoSplit: true,
-        onSplit(self) {
-          return gsap.from(self.words, {
-            duration: 0.6,
-            y: 20,
-            opacity: 0,
-            filter: "blur(6px)",
-            stagger: 0.05,
-          });
-        },
-      });
-    }
-
-    if (heroRef?.current && caseStudiesRef?.current) {
-      gsap.effects.fadeUpOnScroll(caseStudiesRef.current, {
-        start: "top 80%",
-        duration: 0.8,
-      });
-    }
-
-    if (slideshowRef.current) {
-      const slides: HTMLElement[] = gsap.utils.toArray(
-        ".slide",
-        slideshowRef.current
-      );
-
-      if (slides.length > 0) {
-        gsap.set(slides[0], { opacity: 1 });
-        gsap.set(slides.slice(1), { opacity: 0 });
-
-        const tl = gsap.timeline({ repeat: -1 });
-
-        slides.forEach((slide, index) => {
-          const nextIndex = (index + 1) % slides.length;
-
-          tl.to(slide, { opacity: 0, duration: 1, delay: 4 }, ">");
-          tl.to(slides[nextIndex], { opacity: 1, duration: 1 }, "-=1");
+      if (headingElement) {
+        SplitText.create(headingElement, {
+          type: "lines, words",
+          mask: "lines",
+          autoSplit: true,
+          onSplit(self) {
+            return gsap.from(self.words, {
+              duration: 0.6,
+              y: 20,
+              opacity: 0,
+              filter: "blur(6px)",
+              stagger: 0.05,
+            });
+          },
         });
       }
-    }
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+      if (heroRef?.current && caseStudiesRef?.current) {
+        gsap.effects.fadeUpOnScroll(caseStudiesRef.current, {
+          start: "top 80%",
+          duration: 0.8,
+        });
+      }
 
+      if (slideshowRef.current) {
+        const slides: HTMLElement[] = gsap.utils.toArray(
+          ".slide",
+          slideshowRef.current
+        );
 
+        if (slides.length > 0) {
+          gsap.set(slides[0], { opacity: 1 });
+          gsap.set(slides.slice(1), { opacity: 0 });
 
+          const tl = gsap.timeline({ repeat: -1 });
 
-  
+          slides.forEach((slide, index) => {
+            const nextIndex = (index + 1) % slides.length;
+
+            tl.to(slide, { opacity: 0, duration: 1, delay: 4 }, ">");
+            tl.to(slides[nextIndex], { opacity: 1, duration: 1 }, "-=1");
+          });
+        }
+      }
+
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    },
+    { dependencies: [isLoading] } // Re-run when isLoading becomes false
+  );
 
   return (
     <>
@@ -174,7 +187,8 @@ function HomePage() {
             />
 
             <h1 className="loader-title text-3xl font-semibold tracking-wide opacity-0">
-             experience, reliability, guarantees            </h1>
+              experience, reliability, guarantees
+            </h1>
           </div>
         </div>
       )}

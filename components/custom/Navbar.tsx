@@ -32,7 +32,7 @@ function Navbar() {
     },
     {
       name: "Services",
-      href: "/blog",
+      href: "/services",
       description: "HVAC",
     },
     {

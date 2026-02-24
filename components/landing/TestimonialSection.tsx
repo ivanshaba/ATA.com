@@ -5,8 +5,9 @@ import type { CaseStudyType } from "@/data/caseStudies";
 import { caseStudies } from "@/data/caseStudies";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,51 +17,56 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ item, index }) => {
-  const hasTestimonial = Boolean(item.testimonial && item.testimonial.trim().length > 0);
+  const hasTestimonial =
+    Boolean(item.testimonial && item.testimonial.trim().length > 0);
+
   if (!hasTestimonial) return null;
 
   return (
     <article
-      key={`${item.name}-testimonial-${index}`}
-      className="testimonial-card-bg flex h-full w-full flex-col space-y-3 rounded-2xl text-left sm:space-y-4"
-      aria-labelledby={`testimonial-${index}-title`}
+      className="testimonial-card group relative flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:border-primary-200 hover:shadow-xl"
       role="article"
     >
-      <div className="flex aspect-video items-center justify-center overflow-hidden rounded-t-md">
-        <img
-          src={item.test_img}
-          className="aspect-video h-full w-full object-cover"
-          alt={`${item.name} project preview image`}
-          loading="lazy"
-          decoding="async"
-        />
+      {/* Large opening quote mark */}
+      <div className="absolute -top-6 left-6 text-8xl font-serif text-primary-100 select-none">
+        “
       </div>
-      <div className="relative flex flex-1 flex-col space-y-3 px-3 pb-3 sm:space-y-4 sm:px-4 sm:pb-4">
-        <blockquote
-          className="text-heading/90 text-sm leading-tight font-bold tracking-wide sm:text-base md:text-lg"
-          cite={item.case_study_link}
-        >
-          <p id={`testimonial-${index}-title`}>{item.testimonial}</p>
-        </blockquote>
-        <div className="mt-auto space-y-1 sm:space-y-1.5" aria-label="Client details">
-          <div className="flex items-center">
-            <img
-              src={item.logo_src}
-              className="aspect-auto max-h-5 w-auto sm:max-h-6"
-              alt={`${item.name} company logo`}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <p className="text-heading text-xs font-medium sm:text-sm">
-            {item.founder_name}
-            {item.position ? (
-              <span className="text-tag ml-1 text-xs font-normal sm:ml-2 sm:text-sm">
-                {item.position}
-              </span>
-            ) : null}
-          </p>
+
+      {/* Testimonial text */}
+      <blockquote className="relative z-10 flex-1 text-gray-700 text-lg leading-relaxed">
+        {item.testimonial}
+      </blockquote>
+
+      {/* Rating stars – only render if rating exists */}
+      {item.rating && (
+        <div className="mt-4 flex items-center gap-1 text-yellow-400">
+          {[...Array(5)].map((_, i) => (
+            <svg
+              key={i}
+              className={`h-5 w-5 ${i < item.rating! ? "fill-current" : "fill-gray-300"}`}
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
         </div>
+      )}
+
+      {/* Divider */}
+      <div className="my-6 h-px w-full bg-gray-200" />
+
+      {/* Company/person info */}
+      <div className="space-y-1">
+        <p className="text-gray-900 text-base font-semibold">{item.name}</p>
+        {/* Show founder and position if either exists */}
+        {(item.founder_name || item.position) && (
+          <p className="text-gray-500 text-sm">
+            {item.founder_name && item.founder_name}
+            {item.founder_name && item.position && " — "}
+            {item.position && item.position}
+          </p>
+        )}
       </div>
     </article>
   );
@@ -70,135 +76,179 @@ function Testimonial() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const testimonials = caseStudies.filter((cs) => cs.testimonial);
+  // Memoize filtered testimonials to avoid re-filtering on every render
+  const testimonials = useMemo(
+    () =>
+      caseStudies.filter(
+        (cs) => cs.testimonial && cs.testimonial.trim().length > 0
+      ),
+    []
+  );
+
+  // Reset currentSlide if it goes out of bounds (e.g., if data changes)
+  useEffect(() => {
+    if (currentSlide >= testimonials.length) {
+      setCurrentSlide(0);
+    }
+  }, [testimonials.length, currentSlide]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+  };
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev - 1 < 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
 
   useGSAP(() => {
+    if (!sectionRef.current) return;
+
+    const triggers: ScrollTrigger[] = [];
+
+    // Heading animation
     if (headingRef.current) {
-      gsap.effects.fadeUpOnScroll(headingRef.current, {
-        start: "top 80%",
+      const headingAnim = gsap.from(headingRef.current, {
+        opacity: 0,
+        y: 40,
         duration: 0.8,
-        markers: false,
+        ease: "power2.out",
+        paused: true,
       });
+      const trigger = ScrollTrigger.create({
+        trigger: headingRef.current,
+        start: "top 85%",
+        onEnter: () => headingAnim.play(),
+        onEnterBack: () => headingAnim.play(),
+        once: true,
+      });
+      triggers.push(trigger);
     }
 
-    // Cards fade-up (staggered, on scroll)
-    if (gridRef.current && gsap.effects?.fadeUpOnScroll) {
-      const cards = gridRef.current.querySelectorAll("article");
-      cards.forEach((card, index) => {
-        gsap.effects.fadeUpOnScroll(card as Element, {
-          start: "top 92%",
+    // Cards stagger animation
+    if (gridRef.current) {
+      const cards = gridRef.current.querySelectorAll(".testimonial-card");
+      if (cards.length) {
+        const cardsAnim = gsap.from(cards, {
+          opacity: 0,
+          y: 50,
           duration: 0.7,
-          delay: Math.min(index * 0.04, 0.3),
-          markers: false,
+          stagger: 0.15,
+          ease: "power2.out",
+          paused: true,
         });
-      });
+        const trigger = ScrollTrigger.create({
+          trigger: gridRef.current,
+          start: "top 85%",
+          onEnter: () => cardsAnim.play(),
+          onEnterBack: () => cardsAnim.play(),
+          once: true,
+        });
+        triggers.push(trigger);
+      }
     }
 
-    if (statsRef.current && gsap.effects?.fadeUpOnScroll) {
-      const items = statsRef.current.querySelectorAll('[data-stat-item="true"]');
-      items.forEach((el) => {
-        gsap.effects.fadeUpOnScroll(el as Element, {
-          start: "top 95%",
-          duration: 0.6,
-          // delay: index * 0.08,
-          markers: false,
-        });
-      });
-    }
-
+    // Clean up only our ScrollTriggers
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      triggers.forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, []); // Empty deps – animations run once on mount; if testimonials could change, add testimonials as dep.
 
   return (
-    <>
-      <section
-        ref={sectionRef}
-        className="px-4 py-12 sm:px-6 sm:py-16 md:px-8 md:py-20 lg:px-12 lg:py-24"
-        aria-labelledby="testimonials-heading"
-        role="region"
+    <section
+      ref={sectionRef}
+      className="bg-gray-50 px-4 py-16 sm:px-6 md:px-8 lg:px-12 lg:py-24"
+      aria-labelledby="testimonials-heading"
+    >
+      <SectionHeading
+        ref={headingRef}
+        badge="Client Feedback"
+        heading="Trusted by Industry Leaders"
+        description="Our clients rely on us for precision, performance, and long-term reliability."
+        size="md"
+        align="center"
+        as="h2"
+        id="testimonials-heading"
+        className="mb-16"
+      />
+
+      {/* Desktop Grid */}
+      <div
+        ref={gridRef}
+        className="hidden lg:grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
       >
-        {/* Header */}
-        <SectionHeading
-          ref={headingRef}
-          badge="Testimonials"
-          heading="Meet our happy clients"
-          description="Read what our clients say about working with ATA."
-          size="md"
-          align="center"
-          as="h2"
-          id="testimonials-heading"
-          className="mb-6 sm:mb-8 md:mb-14"
-          showDescriptionToScreenReaders={true}
-        />
+        {testimonials.map((item, index) => (
+          <TestimonialCard
+            key={`${item.name}-${index}`}  // Use combination of name and index for uniqueness
+            item={item}
+            index={index}
+          />
+        ))}
+      </div>
 
-        <div
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:grid-cols-3 xl:gap-10"
-          ref={gridRef}
-          role="list"
-          aria-label="Client testimonials"
-        >
-          {testimonials.map((item, index) => (
-            <div role="listitem" key={`${item.name}-${index}`}>
-              <TestimonialCard item={item} index={index} />
-            </div>
-          ))}
-        </div>
-
-        {/* <section
-          className="mt-10 sm:mt-12 md:mt-14 lg:mt-16"
-          aria-labelledby="stats-heading"
-          role="region"
-          ref={statsRef}
-         >
-          <h3 id="stats-heading" className="sr-only">
-            Impact metrics
-          </h3>
-          <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col divide-y divide-gray-200 sm:divide-y-0 sm:flex-row sm:divide-x">
-              <div
-                className="flex flex-1 flex-col items-start px-4 py-4 sm:items-center sm:px-6 sm:py-6 md:py-0"
-                data-stat-item="true"
-              >
-                <div className="text-heading text-3xl font-semibold sm:text-4xl md:text-5xl">
-                  120+
+      {/* Mobile/Tablet Carousel (only if testimonials exist) */}
+      {testimonials.length > 0 && (
+        <div className="relative lg:hidden" aria-live="polite">
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-out will-change-transform"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {testimonials.map((item, index) => (
+                <div
+                  key={`mobile-${item.name}-${index}`}  // Use name and index for uniqueness
+                  className="w-full flex-shrink-0 px-4"
+                  aria-hidden={index !== currentSlide}
+                >
+                  <TestimonialCard item={item} index={index} />
                 </div>
-                <p className="text-label mt-1 text-sm sm:mt-2 sm:text-base">
-                  AI-powered projects delivered
-                </p>
-              </div>
-
-              <div
-                className="flex flex-1 flex-col items-start px-4 py-4 sm:items-center sm:px-6 sm:py-6 md:py-0"
-                data-stat-item="true"
-              >
-                <div className="text-heading text-3xl font-semibold sm:text-4xl md:text-5xl">
-                  50+
-                </div>
-                <p className="text-label mt-1 text-sm sm:mt-2 sm:text-base">
-                  Global clients we've partnered with
-                </p>
-              </div>
-
-              <div
-                className="flex flex-1 flex-col items-start px-4 py-4 sm:items-center sm:px-6 sm:py-6 md:py-0"
-                data-stat-item="true"
-              >
-                <div className="text-heading text-3xl font-semibold sm:text-4xl md:text-5xl">
-                  $50k+
-                </div>
-                <p className="text-label mt-1 text-sm sm:mt-2 sm:text-base">
-                  Monthly recurring revenue generated
-                </p>
-              </div>
+              ))}
             </div>
           </div>
-        </section> */}
-      </section>
-    </>
+
+          {/* Carousel controls (only if more than one) */}
+          {testimonials.length > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                aria-label="Next testimonial"
+              >
+                <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+              </button>
+
+              {/* Dots indicator */}
+              <div className="flex justify-center gap-2 mt-6" role="tablist">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`h-2 w-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+                      i === currentSlide
+                        ? "bg-primary-600 w-4"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    role="tab"
+                    aria-selected={i === currentSlide}
+                    aria-controls={`testimonial-slide-${i}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </section>
   );
 }
 
