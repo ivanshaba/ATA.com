@@ -187,7 +187,7 @@ function HomePage() {
             />
 
             <h1 className="loader-title text-3xl font-semibold tracking-wide opacity-0">
-              experience, reliability, guarantees
+              {/* experience, reliability, guarantees */}
             </h1>
           </div>
         </div>
