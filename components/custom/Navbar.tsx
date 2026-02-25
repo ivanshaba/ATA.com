@@ -20,36 +20,11 @@ function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    {
-      name: "Home",
-      href: "/",
-      description: "Return to homepage",
-    },
-    {
-      name: "About",
-      href: "/about",
-      description: "Learn more about our company",
-    },
-    {
-      name: "Services",
-      href: "/services",
-      description: "HVAC",
-    },
-    {
-      name: "Blog",
-      href: "/blog",
-      description: "HVAC",
-    },
-    // {
-    //   name: "Why Us",
-    //   href: "/blog",
-    //   description: "Read our latest AI insights and research",
-    // },
-    {
-      name: "Contact",
-      href: "/contact",
-      description: "HVAC",
-    }
+    { name: "Home", href: "/", description: "Return to homepage" },
+    { name: "About", href: "/about", description: "Learn more about our company" },
+    { name: "Services", href: "/services", description: "HVAC" },
+    { name: "Blog", href: "/blog", description: "HVAC" },
+    { name: "Contact", href: "/contact", description: "HVAC" },
   ];
 
   const toggleMenu = () => {
@@ -60,11 +35,9 @@ function Navbar() {
   const closeMenu = () => {
     setIsMenuOpen(false);
     setActiveIndex(-1);
-    // Return focus to menu button when closing
     buttonRef.current?.focus();
   };
 
-  // Handle keyboard navigation
   const handleKeyDown = (event: React.KeyboardEvent) => {
     switch (event.key) {
       case "ArrowDown":
@@ -89,7 +62,6 @@ function Navbar() {
     }
   };
 
-  // Handle escape key to close menu
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isMenuOpen) {
@@ -99,7 +71,6 @@ function Navbar() {
 
     if (isMenuOpen) {
       document.addEventListener("keydown", handleEscape);
-      // Prevent body scroll when menu is open
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -111,13 +82,10 @@ function Navbar() {
     };
   }, [isMenuOpen]);
 
-  // Focus management for mobile menu
   useEffect(() => {
     if (isMenuOpen && menuRef.current) {
       const firstLink = menuRef.current.querySelector("a") as HTMLAnchorElement;
-      if (firstLink) {
-        firstLink.focus();
-      }
+      firstLink?.focus();
     }
   }, [isMenuOpen]);
 
@@ -127,6 +95,7 @@ function Navbar() {
 
     let isHidden = false;
     let headerHeight = headerEl.offsetHeight;
+
     gsap.set(headerEl, { y: 0, willChange: "transform" });
 
     const onResize = () => {
@@ -139,41 +108,31 @@ function Navbar() {
       end: "max",
       onUpdate: (self) => {
         const scrolled = self.scroll();
-        // Keep visible when menu is open
+
         if (isMenuOpen) {
-          if (isHidden) {
-            isHidden = false;
-          }
-          gsap.to(headerEl, { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+          gsap.to(headerEl, { y: 0, duration: 0.4, ease: "power2.out" });
           return;
         }
 
-        // Always show at the very top
         if (scrolled <= 0) {
-          if (isHidden) {
-            isHidden = false;
-          }
-          gsap.to(headerEl, { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+          gsap.to(headerEl, { y: 0, duration: 0.4, ease: "power2.out" });
           return;
         }
 
-        if (self.direction === 1) {
-          // Scrolling down → hide
-          if (!isHidden) {
-            isHidden = true;
-            gsap.to(headerEl, {
-              y: -headerHeight,
-              duration: 0.45,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
-          }
-        } else if (self.direction === -1) {
-          // Scrolling up → show
-          if (isHidden) {
-            isHidden = false;
-            gsap.to(headerEl, { y: 0, duration: 0.45, ease: "power2.out", overwrite: "auto" });
-          }
+        if (self.direction === 1 && !isHidden) {
+          isHidden = true;
+          gsap.to(headerEl, {
+            y: -headerHeight,
+            duration: 0.45,
+            ease: "power2.out",
+          });
+        } else if (self.direction === -1 && isHidden) {
+          isHidden = false;
+          gsap.to(headerEl, {
+            y: 0,
+            duration: 0.45,
+            ease: "power2.out",
+          });
         }
       },
     });
@@ -187,7 +146,6 @@ function Navbar() {
 
   return (
     <>
-      {/* Skip to main content link for screen readers */}
       <a
         href="#main-content"
         className="focus:bg-primary focus:text-primary-foreground focus:ring-ring !sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:px-4 focus:py-2 focus:ring-2 focus:ring-offset-2 focus:outline-none"
@@ -195,174 +153,73 @@ function Navbar() {
         Skip to main content
       </a>
 
+      {/* ✅ UPDATED HEADER WITH BORDER + SHADOW */}
       <header
         ref={navRef}
-        className="bg-background fixed inset-x-0 top-2 z-40 mx-auto w-full max-w-6xl rounded-lg px-5"
+        className="bg-background fixed inset-x-0 top-2 z-40 mx-auto w-full max-w-6xl rounded-lg px-5 shadow-lg shadow-black/5 ring-1 ring-black/5 backdrop-blur supports-[backdrop-filter]:bg-background/80"
         role="banner"
         aria-label="Main navigation"
       >
         <div className="container mx-auto">
-          <nav
-            className="flex items-center justify-between py-4"
-            role="navigation"
-            aria-label="Primary navigation"
-          >
-            {/* Logo */}
-            {/* Logo */}
-<div className="flex items-center">
-  <Link
-    href="/" // <-- change this to "/" to go to home
-    className="focus:ring-ring flex items-center gap-2 rounded-md transition-opacity hover:opacity-80 focus:ring-2 focus:ring-offset-2 focus:outline-none"
-    aria-label="ATA - Return to homepage"
-    aria-describedby="logo-description"
-  >
-    <img
-      src="/madaga.png"
-      alt="ATA Logo"
-      className="h-8 w-auto"
-      width="140"
-      height="120"
-      aria-hidden="true"
-    />
-    <span id="logo-description" className="sr-only">
-      ATA - Leading HVAC solutions in Uganda
-    </span>
-  </Link>
-</div>
+          <nav className="flex items-center justify-between py-4">
+            <div className="flex items-center">
+              <Link
+                href="/"
+                className="flex items-center gap-2 rounded-md transition-opacity hover:opacity-80"
+              >
+                <img
+                  src="/madaga.png"
+                  alt="ATA Logo"
+                  className="h-8 w-auto"
+                  width="140"
+                  height="120"
+                />
+              </Link>
+            </div>
 
-
-
-
-
-
-            <ul
-              className="hidden items-center space-x-6 lg:flex"
-              role="menubar"
-              aria-label="Main navigation menu"
-            >
-              {navLinks.map((link, index) => {
-                const isActive =
-                  pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
-
+            <ul className="hidden items-center space-x-6 lg:flex">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
                 return (
-                  <li key={link.name} role="none">
+                  <li key={link.name}>
                     <Link
                       href={link.href}
-                      className={`text-text-heading hover:text-foreground focus:ring-ring rounded-md px-2 py-1 !text-sm font-medium transition-colors focus:ring-0 focus:outline-none ${
-                        isActive ? "text-foreground font-normal" : "text-foreground/70"
+                      className={`px-2 py-1 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "text-foreground"
+                          : "text-foreground/70 hover:text-foreground"
                       }`}
-                      role="menuitem"
-                      aria-describedby={`nav-description-${index}`}
-                      onFocus={() => setActiveIndex(index)}
-                      onBlur={() => setActiveIndex(-1)}
                     >
                       {link.name}
-                      <span id={`nav-description-${index}`} className="sr-only">
-                        {link.description}
-                      </span>
                     </Link>
                   </li>
                 );
               })}
             </ul>
 
-            
-
-            {/* Mobile Menu Button */}
             <div className="lg:hidden">
               <button
                 ref={buttonRef}
                 onClick={toggleMenu}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-md outline-none focus:ring-0 focus:outline-none"
-                aria-expanded={isMenuOpen}
-                aria-controls="mobile-menu"
-                aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-                aria-haspopup="true"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-md"
               >
                 <span
-                  aria-hidden="true"
-                  className={`bg-foreground absolute left-1/2 block h-0.5 w-6 -translate-x-1/2 rounded-sm transition-all duration-200 ease-in-out ${
-                    isMenuOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-3 rotate-0"
+                  className={`bg-foreground absolute left-1/2 block h-0.5 w-6 -translate-x-1/2 transition-all ${
+                    isMenuOpen
+                      ? "top-1/2 -translate-y-1/2 rotate-45"
+                      : "top-3"
                   }`}
                 />
                 <span
-                  aria-hidden="true"
-                  className={`bg-foreground absolute left-1/2 block h-0.5 w-6 -translate-x-1/2 rounded-sm transition-all duration-200 ease-in-out ${
-                    isMenuOpen ? "top-1/2 -translate-y-1/2 -rotate-45" : "top-5 rotate-0"
+                  className={`bg-foreground absolute left-1/2 block h-0.5 w-6 -translate-x-1/2 transition-all ${
+                    isMenuOpen
+                      ? "top-1/2 -translate-y-1/2 -rotate-45"
+                      : "top-5"
                   }`}
                 />
-                <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
               </button>
             </div>
           </nav>
-
-          {/* Mobile Navigation Menu */}
-          {isMenuOpen && (
-            <div
-              className="lg:hidden"
-              ref={menuRef}
-              id="mobile-menu"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Mobile navigation menu"
-            >
-              <div className="">
-                <div className="space-y-2 px-2 py-4">
-                  <ul className="space-y-2" role="menu" aria-label="Mobile navigation options">
-                    {navLinks.map((link, index) => {
-                      const isActive =
-                        pathname === link.href || (link.href.startsWith("/#") && pathname === "/");
-
-                      return (
-                        <li key={link.name} role="none">
-                          <Link
-                            href={link.href}
-                            className={`hover:bg-accent hover:text-accent-foreground block rounded-md px-3 py-2 text-base font-medium transition-colors focus:outline-none ${
-                              activeIndex === index || isActive
-                                ? "bg-accent text-accent-foreground"
-                                : "text-foreground/70"
-                            }`}
-                            role="menuitem"
-                            tabIndex={activeIndex === index ? 0 : -1}
-                            aria-describedby={`mobile-nav-description-${index}`}
-                            onClick={closeMenu}
-                            onKeyDown={(e) => handleKeyDown(e)}
-                          >
-                            {link.name}
-                            <span id={`mobile-nav-description-${index}`} className="sr-only">
-                              {link.description}
-                            </span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <div className="border-t pt-4 space-y-3">
-                    {/* GitHub Link */}
-                    <Link
-                      href="https://github.com/ATA"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none"
-                      aria-label="Visit our GitHub repository"
-                      onClick={closeMenu}
-                    >
-                      <Github className="h-5 w-5 text-primary" />
-                      GitHub
-                    </Link>
-                    
-                    <Button
-                      className="w-full"
-                      aria-label="Contact us to start working together"
-                      onClick={closeMenu}
-                    >
-                      Work with us
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </header>
     </>
