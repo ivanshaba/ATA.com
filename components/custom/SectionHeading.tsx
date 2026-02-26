@@ -126,7 +126,7 @@ const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
           className={cn(
             "bg-tag-bg w-fit rounded-3xl",
             variant.badge,
-            align === "center" && "md:mx-auto",
+            align === "center" && "mx-auto",
             badgeClassName
           )}
           role="banner"
@@ -147,7 +147,7 @@ const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
           className={cn(
             "text-heading font-semibold",
             variant.heading,
-            align === "center" && "md:mx-auto",
+            align === "center" && "mx-auto",
             headingClassName
           )}
         >
@@ -160,7 +160,7 @@ const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
             className={cn(
               "text-label",
               variant.description,
-              align === "center" && "md:mx-auto",
+              align === "center" && "mx-auto",
               !showDescriptionToScreenReaders && "sr-only"
             )}
             aria-live="polite"

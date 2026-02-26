@@ -1,13 +1,16 @@
 "use client";
 
-import { forwardRef, useRef, useState, useEffect, useMemo } from "react";
+import { forwardRef, useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
+import "@/lib/GSAPAnimations";
+import { cn } from "@/lib/utils";
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import {
-  SectionHeading as OriginalSectionHeading,
-  SectionHeadingProps,
-} from "@/components/custom/SectionHeading";
+// import { ScrollTrigger } from "gsap/all";
+
+import { SectionHeading as OriginalSectionHeading, SectionHeadingProps } from "@/components/custom/SectionHeading";
+// import { useEffect, useRef, useState } from "react";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,47 +26,42 @@ interface TestimonialType {
 }
 
 /* ===============================
-   Data
+   Testimonial Data
 =================================*/
 const testimonialsData: TestimonialType[] = [
   {
     name: "Apex Logistics Group",
     founder_name: "Daniel K.",
     position: "Operations Director",
-    testimonial:
-      "Their execution was structured, timely, and technically sound. From strategy to delivery, every detail was handled with precision. The results exceeded our internal performance benchmarks.",
+    testimonial: "Their execution was structured, timely, and technically sound. From strategy to delivery, every detail was handled with precision. The results exceeded our internal performance benchmarks.",
     rating: 5,
   },
   {
     name: "NovaTech Solutions",
     founder_name: "Sarah M.",
     position: "Founder & CEO",
-    testimonial:
-      "What stood out most was their ability to understand our vision and translate it into measurable outcomes. The level of professionalism and consistency throughout the engagement was exceptional.",
+    testimonial: "What stood out most was their ability to understand our vision and translate it into measurable outcomes. The level of professionalism and consistency throughout the engagement was exceptional.",
     rating: 5,
   },
   {
     name: "Stratos Digital",
     founder_name: "Michael R.",
     position: "Head of Digital Strategy",
-    testimonial:
-      "We needed reliability and scalability — they delivered both. Their approach was methodical, performance-driven, and aligned perfectly with our long-term objectives.",
+    testimonial: "We needed reliability and scalability — they delivered both. Their approach was methodical, performance-driven, and aligned perfectly with our long-term objectives.",
     rating: 4,
   },
   {
     name: "PrimeEdge Consulting",
     founder_name: "Grace N.",
     position: "Managing Director",
-    testimonial:
-      "Working with them improved our operational efficiency and strengthened our market positioning significantly. Communication was clear, deadlines were respected, and execution was flawless.",
+    testimonial: "Working with them improved our operational efficiency and strengthened our market positioning significantly. Communication was clear, deadlines were respected, and execution was flawless.",
     rating: 5,
   },
   {
     name: "Elevate Ventures",
     founder_name: "Brian T.",
     position: "Co-Founder",
-    testimonial:
-      "They brought clarity to our processes and elevated our brand presence beyond expectations. The partnership has been instrumental to our growth trajectory.",
+    testimonial: "They brought clarity to our processes and elevated our brand presence beyond expectations. The partnership has been instrumental to our growth trajectory.",
     rating: 4,
   },
 ];
@@ -72,14 +70,12 @@ const testimonialsData: TestimonialType[] = [
    SectionHeading with ref support
 =================================*/
 export const SectionHeading = forwardRef<HTMLDivElement, SectionHeadingProps>(
-  (props, ref) => {
-    return <OriginalSectionHeading ref={ref} {...props} />;
-  }
+  (props, ref) => <OriginalSectionHeading ref={ref} {...props} />
 );
 SectionHeading.displayName = "SectionHeading";
 
 /* ===============================
-   Testimonial Card
+   Testimonial Card Component
 =================================*/
 const TestimonialCard: React.FC<{ item: TestimonialType }> = ({ item }) => {
   const rating = item.rating ?? 0;
@@ -123,20 +119,14 @@ const TestimonialCard: React.FC<{ item: TestimonialType }> = ({ item }) => {
 };
 
 /* ===============================
-   Main Testimonial Component
+   Main TestimonialSection Component
 =================================*/
-export default function Testimonial() {
+export default function TestimonialSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const testimonials = useMemo(() => testimonialsData, []);
 
-  /* Slide navigation */
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 < 0 ? testimonials.length - 1 : prev - 1));
-
-  /* GSAP Animations */
+  // GSAP Animations – runs once after mount
   useEffect(() => {
     if (!sectionRef.current) return;
 
@@ -172,16 +162,7 @@ export default function Testimonial() {
     return () => ctx.revert();
   }, []);
 
-  /* Auto-slide for mobile */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    }, 5000); // slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
-  if (!testimonials.length) return null;
+  if (testimonials.length === 0) return null;
 
   return (
     <section
@@ -199,45 +180,11 @@ export default function Testimonial() {
         className="mb-16"
       />
 
-      {/* Desktop Grid */}
-      <div className="hidden lg:grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Responsive grid – shows all cards on every screen */}
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {testimonials.map((item, index) => (
           <TestimonialCard key={`${item.name}-${index}`} item={item} />
         ))}
-      </div>
-
-      {/* Mobile Carousel */}
-      <div className="relative lg:hidden">
-        <div className="overflow-hidden min-h-[300px]">
-          <div
-            className="flex transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-          >
-            {testimonials.map((item, index) => (
-              <div key={`mobile-${item.name}-${index}`} className="w-full flex-shrink-0 px-4">
-                <TestimonialCard item={item} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {testimonials.length > 1 && (
-          <>
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
-            >
-              <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
-            >
-              <ChevronRightIcon className="h-5 w-5 text-gray-700" />
-            </button>
-          </>
-        )}
       </div>
     </section>
   );
