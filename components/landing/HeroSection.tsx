@@ -41,8 +41,8 @@ function HomePage() {
     if (!loaderRef.current) return;
 
     const glowAnimation = gsap.to(".loader-logo", {
-      boxShadow: "0px 0px 60px rgba(168,85,247,1)",
-      filter: "drop-shadow(0px 0px 30px rgba(168,85,247,1))",
+      boxShadow: "0px 0px 60px #0D00FB",
+      filter: "drop-shadow(0px 0px 30px #0022FF)",
       duration: 0.7,
       repeat: -1,
       yoyo: true,
